@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { createRoom, getRooms, RoomInfo } from '../models/room'
 import RoomListView from '../components/RoomListView'
+import Link from 'next/link'
 
 export default function Home() {
   const router = useRouter()
@@ -33,7 +34,9 @@ export default function Home() {
   }, [router])
   return (
     <>
-      <h1 className="font-bold">Home</h1>
+      <Link href="/" className="font-bold">
+        Home
+      </Link>
       <div>
         <button className="cursor-pointer" onClick={() => onClickCreateRoom()}>
           방 추가

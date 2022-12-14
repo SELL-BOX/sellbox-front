@@ -3,8 +3,12 @@ import { CompatClient, Stomp } from '@stomp/stompjs'
 import React, { useRef } from 'react'
 import { HTTP_API_SERVER } from '../configs/appConfig'
 import { ChatView } from '../components/ChatView'
+import Link from 'next/link'
+import useRoomId from '../hooks/useRoomId'
 
-export default function Home() {
+export default function Presenter() {
+  const [roomId] = useRoomId()
+
   const pcConfig = {
     iceServers: [
       {
@@ -19,7 +23,7 @@ export default function Home() {
     if (clientRef.current) {
       const client = clientRef.current
       client.publish({
-        destination: '/stream',
+        destination: `/stream/room/${roomId}`,
         body: JSON.stringify({
           id: 'stop',
         }),
@@ -35,7 +39,7 @@ export default function Home() {
     clientRef.current = client
 
     client.connect({}, async () => {
-      client.subscribe('/user/video/room', (response) => {
+      client.subscribe(`/user/video/room/${roomId}`, (response) => {
         const res = JSON.parse(response.body)
         console.log(res)
         switch (res.id) {
@@ -80,7 +84,7 @@ export default function Home() {
       peerConnection.onicecandidate = (e) => {
         if (e.candidate) {
           client.publish({
-            destination: '/stream',
+            destination: `/stream/room/${roomId}`,
             body: JSON.stringify({
               id: 'onIceCandidate',
               candidate: e.candidate,
@@ -96,7 +100,7 @@ export default function Home() {
       })
       peerConnection.setLocalDescription(new RTCSessionDescription(offer))
       client.publish({
-        destination: '/stream',
+        destination: `/stream/room/${roomId}`,
         body: JSON.stringify({
           id: 'presenter',
           sdpOffer: offer.sdp,
@@ -106,7 +110,9 @@ export default function Home() {
   }
   return (
     <>
-      <h1 className="font-bold">Home</h1>
+      <Link href="/" className="font-bold">
+        Home
+      </Link>
       <div className="flex">
         <div>
           <video ref={localVideoRef} autoPlay={true}></video>
