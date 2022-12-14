@@ -1,23 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { createRoom, getRooms, RoomInfo } from './model/room'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-
-type RoomListViewProps = {
-  rooms: RoomInfo[]
-}
-
-export function RoomListView({ rooms }: RoomListViewProps) {
-  return (
-    <ul>
-      {rooms.map((r) => (
-        <li key={r.roomId}>
-          <Link href={`/viewer?room=${r.roomId}`}>{r.roomId}</Link>
-        </li>
-      ))}
-    </ul>
-  )
-}
+import { createRoom, getRooms, RoomInfo } from '../models/room'
+import RoomListView from '../components/RoomListView'
 
 export default function Home() {
   const router = useRouter()
@@ -55,7 +39,7 @@ export default function Home() {
           방 추가
         </button>
         <h2>방 목록</h2>
-        <RoomListView rooms={rooms}></RoomListView>
+        <RoomListView rooms={rooms} />
       </div>
     </>
   )

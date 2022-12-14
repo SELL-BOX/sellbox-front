@@ -1,6 +1,8 @@
 import SockJS from 'sockjs-client'
 import { CompatClient, Stomp } from '@stomp/stompjs'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
+import { HTTP_API_SERVER } from '../configs/appConfig'
+import { ChatView } from '../components/ChatView'
 
 export default function Home() {
   const pcConfig = {
@@ -28,7 +30,7 @@ export default function Home() {
   const presenterStart = () => {
     const peerConnection = new RTCPeerConnection(pcConfig)
 
-    const socket = new SockJS('http://localhost:8443/ws')
+    const socket = new SockJS(`${HTTP_API_SERVER}/ws`)
     const client = Stomp.over(socket)
     clientRef.current = client
 
@@ -105,19 +107,24 @@ export default function Home() {
   return (
     <>
       <h1 className="font-bold">Home</h1>
-      <video ref={localVideoRef} autoPlay={true}></video>
-      <button
-        className="block border-2 border-black"
-        onClick={() => presenterStart()}
-      >
-        Presenter Start
-      </button>
-      <button
-        className="block border-2 border-black"
-        onClick={() => presenterStop()}
-      >
-        Stop
-      </button>
+      <div className="flex">
+        <div>
+          <video ref={localVideoRef} autoPlay={true}></video>
+          <button
+            className="block border-2 border-black"
+            onClick={() => presenterStart()}
+          >
+            Presenter Start
+          </button>
+          <button
+            className="block border-2 border-black"
+            onClick={() => presenterStop()}
+          >
+            Stop
+          </button>
+        </div>
+        <ChatView />
+      </div>
     </>
   )
 }
