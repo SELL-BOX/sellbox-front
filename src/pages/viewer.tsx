@@ -123,7 +123,7 @@ export default function Viewer() {
             Stop
           </button>
         </div>
-        <ChatView />
+        {roomId && <ChatView roomId={roomId} />}
       </div>
     </>
   )

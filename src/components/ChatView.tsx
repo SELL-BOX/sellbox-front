@@ -26,28 +26,18 @@ interface ChatMessage {
   message: string
 }
 
-export function ChatView() {
+type ChatViewProps = {
+  roomId: string
+}
+
+export function ChatView({roomId} : ChatViewProps ) {
   const router = useRouter()
-  const [roomId, setRoomId] = useState<string>()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [username, setUsername] = useState<string>('')
   const [inputText, setInputText] = useState<string>('')
   const clientRef = useRef<CompatClient | null>(null)
 
   useEffect(() => {
-    if (router.isReady) {
-      const roomIdParam = router.query.room
-      if (typeof roomIdParam === 'string') {
-        setRoomId(roomIdParam)
-      } else {
-        alert('방 정보가 없습니다')
-        router.push('/')
-      }
-    }
-  }, [router, setRoomId])
-
-  useEffect(() => {
-    if (!roomId) return
     const socket = new SockJS(`${HTTP_API_SERVER}/ws`)
     const client = Stomp.over(socket)
     clientRef.current = client
@@ -77,11 +67,6 @@ export function ChatView() {
     [clientRef, roomId],
   )
   const onSubmitClick = useCallback(() => {
-    if (!roomId) {
-      alert('방 정보가 없습니다')
-      router.push('/')
-      return
-    }
     if (username.trim() === '') {
       alert('사용자명을 입력하세요')
       return

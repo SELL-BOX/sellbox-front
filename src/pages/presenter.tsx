@@ -129,7 +129,7 @@ export default function Presenter() {
             Stop
           </button>
         </div>
-        <ChatView />
+        {roomId && <ChatView roomId={roomId} />}
       </div>
     </>
   )
