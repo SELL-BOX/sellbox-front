@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { createRoom, getRooms, RoomInfo } from '../models/room'
 import RoomListView from '../components/RoomListView'
 import Link from 'next/link'
+import Button from '../components/common/Button'
 
 export default function Home() {
   const router = useRouter()
@@ -38,9 +39,7 @@ export default function Home() {
         Home
       </Link>
       <div>
-        <button className="cursor-pointer" onClick={() => onClickCreateRoom()}>
-          방 추가
-        </button>
+        <Button onClick={onClickCreateRoom}>방 추가</Button>
         <h2>방 목록</h2>
         <RoomListView rooms={rooms} />
       </div>

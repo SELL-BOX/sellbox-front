@@ -5,6 +5,7 @@ import { HTTP_API_SERVER } from '../configs/appConfig'
 import { ChatView } from '../components/ChatView'
 import Link from 'next/link'
 import useRoomId from '../hooks/useRoomId'
+import Button from '../components/common/Button'
 
 export default function Viewer() {
   const [roomId] = useRoomId()
@@ -110,18 +111,12 @@ export default function Viewer() {
       <div className="flex">
         <div>
           <video ref={remoteVideoRef} autoPlay={true}></video>
-          <button
-            className="block border-2 border-black"
-            onClick={() => viewerStart()}
-          >
-            Viewer Start
-          </button>
-          <button
-            className="block border-2 border-black"
-            onClick={() => viewerStop()}
-          >
-            Stop
-          </button>
+          <div className="flex space-x-1">
+            <Button onClick={() => viewerStart()}>Viewer Start</Button>
+            <Button primary={false} onClick={() => viewerStop()}>
+              Stop
+            </Button>
+          </div>
         </div>
         {roomId && <ChatView roomId={roomId} />}
       </div>

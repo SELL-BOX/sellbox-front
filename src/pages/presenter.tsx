@@ -5,6 +5,7 @@ import { HTTP_API_SERVER } from '../configs/appConfig'
 import { ChatView } from '../components/ChatView'
 import Link from 'next/link'
 import useRoomId from '../hooks/useRoomId'
+import Button from '../components/common/Button'
 
 export default function Presenter() {
   const [roomId] = useRoomId()
@@ -116,18 +117,12 @@ export default function Presenter() {
       <div className="flex">
         <div>
           <video ref={localVideoRef} autoPlay={true}></video>
-          <button
-            className="block border-2 border-black"
-            onClick={() => presenterStart()}
-          >
-            Presenter Start
-          </button>
-          <button
-            className="block border-2 border-black"
-            onClick={() => presenterStop()}
-          >
-            Stop
-          </button>
+          <div className="flex space-x-1">
+            <Button onClick={() => presenterStart()}>Presenter Start</Button>
+            <Button primary={false} onClick={() => presenterStop()}>
+              Stop
+            </Button>
+          </div>
         </div>
         {roomId && <ChatView roomId={roomId} />}
       </div>
