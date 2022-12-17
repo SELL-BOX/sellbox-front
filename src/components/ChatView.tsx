@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import SockJS from 'sockjs-client'
 import { HTTP_API_SERVER } from '../configs/appConfig'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import { useRouter } from 'next/router'
 import { ChatList } from './ChatList'
+import Button from './common/Button'
 
 export interface ChatMessage {
   roomId: string
@@ -21,6 +22,15 @@ export function ChatView({ roomId }: ChatViewProps) {
   const [username, setUsername] = useState<string>('')
   const [inputText, setInputText] = useState<string>('')
   const clientRef = useRef<CompatClient | null>(null)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+
+  // 새로운 채팅이 생길때 채팅창 맨 아래로 이동
+  useEffect(() => {
+    const scroll = scrollRef.current
+    if (scroll) {
+      scroll.scrollTop = scroll.scrollHeight
+    }
+  }, [messages])
 
   useEffect(() => {
     const socket = new SockJS(`${HTTP_API_SERVER}/ws`)
@@ -65,26 +75,39 @@ export function ChatView({ roomId }: ChatViewProps) {
       userId: username,
       message: inputText,
     })
+    setInputText('')
   }, [username, roomId, inputText])
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        onSubmitClick()
+      }
+    },
+    [onSubmitClick],
+  )
   return (
-    <div>
-      <ChatList messages={messages} />
-      <div>
-        <textarea
+    <div className="flex flex-col absolute right-0 top-0 h-screen border-l p-2 pb-5 space-y-1">
+      <div className="grow overflow-y-auto" ref={scrollRef}>
+        <ChatList messages={messages} />
+      </div>
+      <div className="flex space-x-1">
+        <input
+          type="text"
           value={inputText}
-          className="border"
+          className="border bg-gray-100 px-1"
           onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={onKeyDown}
         />
-        <button onClick={() => onSubmitClick()}>전송</button>
-        <div>
-          <label>사용자명</label>
-          <input
-            type="text"
-            value={username}
-            className="border"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+        <Button onClick={() => onSubmitClick()}>전송</Button>
+      </div>
+      <div>
+        <label className="mr-1">이름</label>
+        <input
+          type="text"
+          value={username}
+          className="border-2"
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
     </div>
   )
