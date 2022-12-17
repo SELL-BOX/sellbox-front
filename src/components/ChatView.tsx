@@ -3,24 +3,9 @@ import SockJS from 'sockjs-client'
 import { HTTP_API_SERVER } from '../configs/appConfig'
 import { CompatClient, Stomp } from '@stomp/stompjs'
 import { useRouter } from 'next/router'
+import { ChatList } from './ChatList'
 
-type ChatListProps = {
-  messages: ChatMessage[]
-}
-
-function ChatList({ messages }: ChatListProps) {
-  return (
-    <ul className="border">
-      {messages.map((m, key) => (
-        <li key={key}>
-          <p className="whitespace-pre">{m.userId + ' : ' + m.message}</p>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-interface ChatMessage {
+export interface ChatMessage {
   roomId: string
   userId: string
   message: string
