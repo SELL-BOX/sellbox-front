@@ -30,7 +30,7 @@ type ChatViewProps = {
   roomId: string
 }
 
-export function ChatView({roomId} : ChatViewProps ) {
+export function ChatView({ roomId }: ChatViewProps) {
   const router = useRouter()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [username, setUsername] = useState<string>('')
