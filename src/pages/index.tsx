@@ -4,6 +4,7 @@ import { createRoom, getRooms, RoomInfo } from '../models/room'
 import RoomListView from '../components/RoomListView'
 import Link from 'next/link'
 import Button from '../components/common/Button'
+import Header from '../components/Header'
 
 export default function Home() {
   const router = useRouter()
@@ -35,9 +36,7 @@ export default function Home() {
   }, [router])
   return (
     <>
-      <Link href="/" className="font-bold">
-        Home
-      </Link>
+      <Header />
       <div>
         <Button onClick={onClickCreateRoom}>방 추가</Button>
         <h2>방 목록</h2>
