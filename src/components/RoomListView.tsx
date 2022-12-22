@@ -10,7 +10,7 @@ export default function RoomListView({ rooms }: RoomListViewProps) {
     <ul>
       {rooms.map((r) => (
         <li key={r.roomId}>
-          <Link href={`/viewer?room=${r.roomId}`}>{r.roomId}</Link>
+          <Link href={`/viewer?room=${r.roomId}`}>{r.roomName}</Link>
         </li>
       ))}
     </ul>

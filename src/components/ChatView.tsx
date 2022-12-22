@@ -5,6 +5,7 @@ import { CompatClient, Stomp } from '@stomp/stompjs'
 import { useRouter } from 'next/router'
 import { ChatList } from './ChatList'
 import Button from './common/Button'
+import TextInput from './common/TextInput'
 
 export interface ChatMessage {
   roomId: string
@@ -91,11 +92,11 @@ export function ChatView({ roomId }: ChatViewProps) {
         <ChatList messages={messages} />
       </div>
       <div className="flex space-x-1">
-        <input
-          type="text"
+        <TextInput
           value={inputText}
-          className="border bg-gray-100 px-1"
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInputText(e.target.value)
+          }
           onKeyDown={onKeyDown}
         />
         <Button onClick={() => onSubmitClick()}>전송</Button>

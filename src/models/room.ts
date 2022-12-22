@@ -1,22 +1,23 @@
-import { HTTP_API_SERVER } from '../configs/appConfig'
-import axios from 'axios'
+import { client } from './client'
 
 export interface RoomInfo {
   roomId: string
+  roomName: string
+  hostId: string
 }
 
-const client = axios.create({
-  baseURL: HTTP_API_SERVER,
-})
+interface CreateRoomDto {
+  roomName: string
+}
 
-export function createRoom(room: RoomInfo) {
-  return client.post<RoomInfo>('/rooms/create', room)
+export function createRoom(room: CreateRoomDto) {
+  return client.post<RoomInfo>('/api/v1/rooms', room)
 }
 
 export function getRooms() {
-  return client.get<RoomInfo[]>('/rooms/')
+  return client.get<RoomInfo[]>('/api/v1/rooms')
 }
 
 export function enterRoom(roomId: string) {
-  return client.get<RoomInfo>(`/rooms/${roomId}`)
+  return client.get<RoomInfo>(`/api/v1/rooms/${roomId}`)
 }
