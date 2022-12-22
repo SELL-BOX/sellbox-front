@@ -1,33 +1,24 @@
 import Header from '../components/Header'
 import React, { useCallback, useState } from 'react'
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
-import { GOOGLE_OAUTH_CLIENT_ID } from '../configs/appConfig'
 import TextInput from '../components/common/TextInput'
 import Button from '../components/common/Button'
-import { login } from '../models/user'
-
-function GoogleLoginButton() {
-  return (
-    <GoogleLogin
-      onSuccess={(credentialResponse) => {
-        console.log(credentialResponse)
-      }}
-      onError={() => {
-        console.log('Login Failed')
-      }}
-    />
-  )
-}
+import { signup } from '../models/user'
+import { useRouter } from 'next/router'
 
 export default function LoginPage() {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleClick = useCallback(() => {
-    login({
+    signup({
+      email,
       userId: username,
-      password,
+      userPw: password,
     })
-      .then((res) => console.log(res.status))
+      .then((res) => {
+        router.push('/login')
+      })
       .catch((err) => console.error(err))
   }, [username, password])
   return (
@@ -35,6 +26,12 @@ export default function LoginPage() {
       <Header />
       <div className="container mx-auto w-1/4">
         <div className="flex flex-col space-y-2 mb-3">
+          <label>이메일</label>
+          <TextInput
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label>아이디</label>
           <TextInput
             type="text"
@@ -47,11 +44,8 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick}>로그인</Button>
+          <Button onClick={handleClick}>회원가입</Button>
         </div>
-        <GoogleOAuthProvider clientId={GOOGLE_OAUTH_CLIENT_ID}>
-          <GoogleLoginButton />
-        </GoogleOAuthProvider>
       </div>
     </div>
   )

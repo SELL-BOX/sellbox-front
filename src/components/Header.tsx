@@ -7,8 +7,13 @@ export default function Header() {
       <Link href="/" className="font-bold">
         Home
       </Link>
-      <div className="">
-        <Link href={'/login'}>로그인</Link>
+      <div className="flex space-x-2">
+        <div>
+          <Link href={'/signup'}>회원가입</Link>
+        </div>
+        <div>
+          <Link href={'/login'}>로그인</Link>
+        </div>
       </div>
     </div>
   )
