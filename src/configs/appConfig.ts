@@ -1,3 +1,10 @@
-export const HTTP_API_SERVER = '/backend'
-export const GOOGLE_OAUTH_CLIENT_ID =
-  '379350616214-bq949mlc3gerte0rc3h8il5jcs6jc3vg.apps.googleusercontent.com'
+export const HTTP_API_SERVER = getConfig().API_SERVER
+
+interface AppConfig {
+  API_SERVER?: string
+}
+
+function getConfig(): AppConfig {
+  if (typeof window !== 'undefined') return (window as any)?.__ENV as AppConfig
+  return {}
+}
