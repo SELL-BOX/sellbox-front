@@ -6,10 +6,7 @@ interface LoginRequest {
 }
 
 export function login(request: LoginRequest) {
-  const params = new URLSearchParams()
-  params.append('userId', request.userId)
-  params.append('password', request.password)
-  return client.post('/api/v1/login', params)
+  return client.post<string>('/api/v1/user/login', request)
 }
 
 interface SignupRequest {

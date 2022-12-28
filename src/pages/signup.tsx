@@ -17,6 +17,7 @@ export default function LoginPage() {
       userPw: password,
     })
       .then((res) => {
+        alert('회원 가입이 완료됬습니다')
         router.push('/login')
       })
       .catch((err) => console.error(err))

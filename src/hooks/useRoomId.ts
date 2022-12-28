@@ -4,7 +4,7 @@ import { enterRoom } from '../models/room'
 
 export default function useRoomId() {
   const router = useRouter()
-  const [roomId, setRoomId] = useState<string>()
+  const [roomId, setRoomId] = useState<number>()
 
   const noRoomInfoCallback = useCallback(() => {
     alert('방 정보가 없습니다')
@@ -15,10 +15,10 @@ export default function useRoomId() {
     if (router.isReady) {
       const roomIdParam = router.query.room
       if (typeof roomIdParam === 'string') {
-        enterRoom(roomIdParam)
+        enterRoom(+roomIdParam)
           .then((res) => {
             if (res.data) {
-              setRoomId(res.data.roomId)
+              setRoomId(res.data.id)
             } else {
               noRoomInfoCallback()
             }

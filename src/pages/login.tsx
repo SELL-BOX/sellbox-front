@@ -1,10 +1,11 @@
 import Header from '../components/Header'
 import React, { useCallback, useState } from 'react'
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
-import { GOOGLE_OAUTH_CLIENT_ID } from '../configs/appConfig'
 import TextInput from '../components/common/TextInput'
 import Button from '../components/common/Button'
 import { login } from '../models/user'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 function GoogleLoginButton() {
   return (
@@ -20,6 +21,7 @@ function GoogleLoginButton() {
 }
 
 export default function LoginPage() {
+  const router = useRouter()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleClick = useCallback(() => {
@@ -27,7 +29,10 @@ export default function LoginPage() {
       userId: username,
       password,
     })
-      .then((res) => console.log(res.status))
+      .then((res) => {
+        Cookies.set('jwt', res.data)
+        router.push('/')
+      })
       .catch((err) => console.error(err))
   }, [username, password])
   return (
@@ -49,7 +54,7 @@ export default function LoginPage() {
           />
           <Button onClick={handleClick}>로그인</Button>
         </div>
-        <GoogleOAuthProvider clientId={GOOGLE_OAUTH_CLIENT_ID}>
+        <GoogleOAuthProvider clientId={'GOOGLE_OAUTH_CLIENT_ID'}>
           <GoogleLoginButton />
         </GoogleOAuthProvider>
       </div>

@@ -25,7 +25,7 @@ export default function Home() {
         roomName: roomName,
       })
         .then((res) => {
-          router.push(`/presenter?room=${res.data.roomId}`)
+          router.push(`/presenter?room=${res.data}`)
         })
         .catch((err) => {
           console.error(err)

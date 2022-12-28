@@ -8,13 +8,13 @@ import Button from './common/Button'
 import TextInput from './common/TextInput'
 
 export interface ChatMessage {
-  roomId: string
+  roomId: number
   userId: string
   message: string
 }
 
 type ChatViewProps = {
-  roomId: string
+  roomId: number
 }
 
 export function ChatView({ roomId }: ChatViewProps) {

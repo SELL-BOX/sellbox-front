@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
+import Button from './common/Button'
+import Cookies from 'js-cookie'
 
 export default function Header() {
+  function handleClick() {
+    Cookies.remove('jwt')
+  }
+
   return (
     <div className="flex space-x-1 mb-2 justify-between">
       <Link href="/" className="font-bold">
@@ -13,6 +19,9 @@ export default function Header() {
         </div>
         <div>
           <Link href={'/login'}>로그인</Link>
+        </div>
+        <div>
+          <Button onClick={handleClick}>로그아웃</Button>
         </div>
       </div>
     </div>

@@ -13,9 +13,9 @@ const Template: ComponentStory<typeof ChatList> = (args) => (
 export const Example = Template.bind({})
 Example.args = {
   messages: [
-    { message: 'hello', roomId: 'roomId', userId: 'user1' },
-    { message: 'world', roomId: 'roomId', userId: 'user2' },
-    { message: '123456789\nnew line', roomId: 'roomId', userId: 'user2' },
-    { message: 'message', roomId: 'roomId', userId: 'user1' },
+    { message: 'hello', roomId: 1, userId: 'user1' },
+    { message: 'world', roomId: 2, userId: 'user2' },
+    { message: '123456789\nnew line', roomId: 3, userId: 'user2' },
+    { message: 'message', roomId: 4, userId: 'user1' },
   ],
 }
