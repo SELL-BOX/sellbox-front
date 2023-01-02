@@ -41,7 +41,13 @@ export default function Home() {
           <h2>방 목록</h2>
           <Button onClick={onClickCreateRoom}>방 추가</Button>
         </div>
-        <RoomListView rooms={rooms} />
+        <RoomListView
+          rooms={rooms.map((r) => ({
+            id: r.id,
+            name: r.roomName,
+            thumbnail: '',
+          }))}
+        />
       </div>
     </>
   )
