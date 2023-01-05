@@ -4,6 +4,7 @@ import TextInput from '../components/common/TextInput'
 import Button from '../components/common/Button'
 import { signup } from '../models/user'
 import { useRouter } from 'next/router'
+import TitleText from '../components/common/TitleText'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -15,6 +16,7 @@ export default function LoginPage() {
       email,
       userId: username,
       userPw: password,
+      role: 'presenter',
     })
       .then((res) => {
         alert('회원 가입이 완료됬습니다')
@@ -27,6 +29,7 @@ export default function LoginPage() {
       <Header />
       <div className="container mx-auto w-1/4">
         <div className="flex flex-col space-y-2 mb-3">
+          <TitleText text={'회원가입'} />
           <label>이메일</label>
           <TextInput
             type="text"

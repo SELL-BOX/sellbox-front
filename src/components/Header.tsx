@@ -9,9 +9,9 @@ export default function Header() {
   }
 
   return (
-    <div className="flex space-x-1 mb-2 justify-between">
-      <Link href="/" className="font-bold">
-        Home
+    <div className="flex space-x-1 mb-2 justify-between p-2">
+      <Link href="/" className="font-bold text-xl">
+        SellBox
       </Link>
       <div className="flex space-x-2">
         <div>

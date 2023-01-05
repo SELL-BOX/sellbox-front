@@ -13,7 +13,7 @@ export default function Button({ primary, children, onClick }: ButtonProps) {
         primary
           ? 'bg-blue-400 text-white'
           : 'bg-white border border-blue-400 text-blue-400'
-      } rounded py-1 px-2`}
+      } rounded py-1 px-2  min-w-[5rem]`}
       onClick={() => onClick?.()}
     >
       {children}

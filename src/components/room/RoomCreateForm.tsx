@@ -8,7 +8,7 @@ type RoomCreateFormProps = {
   isEdit?: boolean
 }
 
-type RoomCreateFormData = {
+export type RoomCreateFormData = {
   roomName: string
 }
 
@@ -33,9 +33,11 @@ export default function RoomCreateForm({
     <div className="flex flex-col space-y-2">
       <label>방 이름</label>
       <TextInput type="text" value={roomName} onChange={onChangeRoomName} />
-      <Button onClick={onClickHandle}>
-        {isEdit === true ? '방 생성' : '수정'}
-      </Button>
+      <div>
+        <Button onClick={onClickHandle}>
+          {isEdit === true ? '수정' : '확인'}
+        </Button>
+      </div>
     </div>
   )
 }

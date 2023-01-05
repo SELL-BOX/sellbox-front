@@ -6,6 +6,7 @@ import Button from '../components/common/Button'
 import { login } from '../models/user'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
+import TitleText from '../components/common/TitleText'
 
 function GoogleLoginButton() {
   return (
@@ -40,6 +41,7 @@ export default function LoginPage() {
       <Header />
       <div className="container mx-auto w-1/4">
         <div className="flex flex-col space-y-2 mb-3">
+          <TitleText text={'로그인'} />
           <label>아이디</label>
           <TextInput
             type="text"

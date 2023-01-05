@@ -13,6 +13,7 @@ interface SignupRequest {
   userId: string
   userPw: string
   email: string
+  role: string
 }
 
 export function signup(request: SignupRequest) {

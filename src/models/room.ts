@@ -11,7 +11,7 @@ interface CreateRoomDto {
 }
 
 export function createRoom(room: CreateRoomDto) {
-  return client.post<number>('/api/v1/rooms', room)
+  return client.post<RoomInfo>('/api/v1/rooms', room)
 }
 
 export function getRooms() {

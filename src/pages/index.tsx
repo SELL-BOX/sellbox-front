@@ -19,19 +19,7 @@ export default function Home() {
       })
   }, [])
   const onClickCreateRoom = useCallback(() => {
-    const roomName = prompt('방 이름을 입력하세요')
-    if (roomName) {
-      createRoom({
-        roomName: roomName,
-      })
-        .then((res) => {
-          router.push(`/presenter?room=${res.data}`)
-        })
-        .catch((err) => {
-          console.error(err)
-          alert('방 생성에 실패했습니다')
-        })
-    }
+    router.push('/room/new')
   }, [router])
   return (
     <>
