@@ -36,7 +36,7 @@ export default function LoginPage() {
         router.push('/')
       })
       .catch((err) => console.error(err))
-  }, [username, password])
+  }, [username, password, router])
   return (
     <MainLayout>
       <CenterLayout>

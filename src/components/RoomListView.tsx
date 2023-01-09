@@ -19,6 +19,7 @@ export default function RoomListView({ rooms }: RoomListViewProps) {
           <Link href={`/viewer?room=${r.id}`}>
             <img
               src={r.thumbnail}
+              alt=""
               className="rounded-xl object-contain max-w-[10rem] max-h-[12rem]"
             />
             <div className="px-1">

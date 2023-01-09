@@ -25,7 +25,7 @@ export default function LoginPage() {
         router.push('/login')
       })
       .catch((err) => console.error(err))
-  }, [username, password])
+  }, [username, password, router, email])
   return (
     <MainLayout>
       <CenterLayout>

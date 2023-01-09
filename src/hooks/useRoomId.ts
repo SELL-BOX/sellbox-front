@@ -31,7 +31,7 @@ export default function useRoomId() {
         noRoomInfoCallback()
       }
     }
-  }, [router, setRoomId])
+  }, [router, noRoomInfoCallback, setRoomId])
 
   return [roomId]
 }

@@ -60,7 +60,7 @@ export function ChatView({ roomId }: ChatViewProps) {
         })
       }
     },
-    [clientRef, roomId],
+    [clientRef],
   )
   const onSubmitClick = useCallback(() => {
     if (username.trim() === '') {
@@ -77,7 +77,7 @@ export function ChatView({ roomId }: ChatViewProps) {
       message: inputText,
     })
     setInputText('')
-  }, [username, roomId, inputText])
+  }, [username, roomId, inputText, sendMessage])
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {

@@ -63,6 +63,7 @@ export default function RoomCreateForm({
         {imageSrc ? (
           <img
             src={imageSrc}
+            alt="썸네일 이미지"
             className="rounded-xl object-contain w-[10rem] h-[12rem]"
           />
         ) : (
