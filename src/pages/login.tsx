@@ -1,4 +1,3 @@
-import Header from '../components/Header'
 import React, { useCallback, useState } from 'react'
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
 import TextInput from '../components/common/TextInput'
@@ -7,6 +6,8 @@ import { login } from '../models/user'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import TitleText from '../components/common/TitleText'
+import CenterLayout from '../components/layout/CenterLayout'
+import MainLayout from '../components/layout/MainLayout'
 
 function GoogleLoginButton() {
   return (
@@ -37,9 +38,8 @@ export default function LoginPage() {
       .catch((err) => console.error(err))
   }, [username, password])
   return (
-    <div>
-      <Header />
-      <div className="container mx-auto w-1/4">
+    <MainLayout>
+      <CenterLayout>
         <div className="flex flex-col space-y-2 mb-3">
           <TitleText text={'로그인'} />
           <label>아이디</label>
@@ -59,7 +59,7 @@ export default function LoginPage() {
         <GoogleOAuthProvider clientId={'GOOGLE_OAUTH_CLIENT_ID'}>
           <GoogleLoginButton />
         </GoogleOAuthProvider>
-      </div>
-    </div>
+      </CenterLayout>
+    </MainLayout>
   )
 }

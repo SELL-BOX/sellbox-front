@@ -5,6 +5,8 @@ import Button from '../components/common/Button'
 import { signup } from '../models/user'
 import { useRouter } from 'next/router'
 import TitleText from '../components/common/TitleText'
+import CenterLayout from '../components/layout/CenterLayout'
+import MainLayout from '../components/layout/MainLayout'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -25,9 +27,8 @@ export default function LoginPage() {
       .catch((err) => console.error(err))
   }, [username, password])
   return (
-    <div>
-      <Header />
-      <div className="container mx-auto w-1/4">
+    <MainLayout>
+      <CenterLayout>
         <div className="flex flex-col space-y-2 mb-3">
           <TitleText text={'회원가입'} />
           <label>이메일</label>
@@ -50,7 +51,7 @@ export default function LoginPage() {
           />
           <Button onClick={handleClick}>회원가입</Button>
         </div>
-      </div>
-    </div>
+      </CenterLayout>
+    </MainLayout>
   )
 }

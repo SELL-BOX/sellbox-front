@@ -9,11 +9,11 @@ export default function Header() {
   }
 
   return (
-    <div className="flex space-x-1 mb-2 justify-between p-2">
+    <div className="flex space-x-1 mb-2 justify-between items-center p-2 h-13">
       <Link href="/" className="font-bold text-xl">
         SellBox
       </Link>
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 items-center">
         <div>
           <Link href={'/signup'}>회원가입</Link>
         </div>

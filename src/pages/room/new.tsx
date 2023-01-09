@@ -3,9 +3,9 @@ import RoomCreateForm, {
 } from '../../components/room/RoomCreateForm'
 import { createRoom } from '../../models/room'
 import { useRouter } from 'next/router'
-import Header from '../../components/Header'
 import React from 'react'
 import TitleText from '../../components/common/TitleText'
+import MainLayout from '../../components/layout/MainLayout'
 
 export default function NewRoomPage() {
   const router = useRouter()
@@ -21,12 +21,11 @@ export default function NewRoomPage() {
   }
 
   return (
-    <>
-      <Header />
+    <MainLayout>
       <div className="p-2 mx-auto w-full sm:w-1/2">
         <TitleText text={'방 생성'} />
         <RoomCreateForm onSubmit={onSubmit} />
       </div>
-    </>
+    </MainLayout>
   )
 }

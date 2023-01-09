@@ -1,6 +1,7 @@
 import TextInput from '../common/TextInput'
 import Button from '../common/Button'
-import React, { useCallback, useState } from 'react'
+import React, { ReactNode, useCallback, useState } from 'react'
+import CenterLayout from '../layout/CenterLayout'
 
 type RoomSettingFormProps = {
   initialRoomName?: string
@@ -28,12 +29,12 @@ export default function RoomSettingForm({
     })
   }, [onSubmit, roomName])
   return (
-    <div className="flex flex-col space-y-2">
+    <CenterLayout>
       <label>방 이름</label>
       <TextInput type="text" value={roomName} onChange={onChangeRoomName} />
       <label htmlFor="thumbnail">썸네일</label>
       <input id="thumbnail" type="file" className="hidden" />
       <Button onClick={onClickHandle}>방 생성</Button>
-    </div>
+    </CenterLayout>
   )
 }

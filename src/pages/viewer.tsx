@@ -6,6 +6,7 @@ import { ChatView } from '../components/ChatView'
 import Link from 'next/link'
 import useRoomId from '../hooks/useRoomId'
 import Button from '../components/common/Button'
+import MainLayout from '../components/layout/MainLayout'
 
 export default function Viewer() {
   const [roomId] = useRoomId()
@@ -104,10 +105,7 @@ export default function Viewer() {
     })
   }
   return (
-    <>
-      <Link href="/" className="font-bold">
-        Home
-      </Link>
+    <MainLayout>
       <div className="flex">
         <div>
           <video ref={remoteVideoRef} autoPlay={true}></video>
@@ -120,6 +118,6 @@ export default function Viewer() {
         </div>
         {roomId && <ChatView roomId={roomId} />}
       </div>
-    </>
+    </MainLayout>
   )
 }
