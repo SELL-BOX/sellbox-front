@@ -10,9 +10,7 @@ import TitleText from '../../components/common/TitleText'
 export default function NewRoomPage() {
   const router = useRouter()
   const onSubmit = (data: RoomCreateFormData) => {
-    createRoom({
-      roomName: data.roomName,
-    })
+    createRoom({ roomName: data.roomName }, data.file)
       .then((res) => {
         router.push(`/presenter?room=${res.data.id}`)
       })
