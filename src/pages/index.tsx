@@ -4,6 +4,7 @@ import { getRooms, RoomInfo } from '../models/room'
 import RoomListView from '../components/RoomListView'
 import Button from '../components/common/Button'
 import MainLayout from '../components/layout/MainLayout'
+import { getThumbnailImage } from '../models/thumbnail'
 
 export default function Home() {
   const router = useRouter()
@@ -23,7 +24,7 @@ export default function Home() {
   }, [router])
   return (
     <MainLayout>
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 mb-2">
         <h2>방 목록</h2>
         <Button onClick={onClickCreateRoom}>방 추가</Button>
       </div>
@@ -31,7 +32,7 @@ export default function Home() {
         rooms={rooms.map((r) => ({
           id: r.id,
           name: r.roomName,
-          thumbnail: '',
+          thumbnail: getThumbnailImage(r.thumbnailId),
         }))}
       />
     </MainLayout>

@@ -2,7 +2,7 @@ import { client } from './client'
 
 interface LoginRequest {
   userId: string
-  password: string
+  userPw: string
 }
 
 export function login(request: LoginRequest) {

@@ -5,6 +5,7 @@ export interface RoomInfo {
   id: number
   roomName: string
   hostId: string
+  thumbnailId: string
 }
 
 interface CreateRoomDto {

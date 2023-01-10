@@ -20,7 +20,7 @@ export default function RoomListView({ rooms }: RoomListViewProps) {
             <img
               src={r.thumbnail}
               alt=""
-              className="rounded-xl object-contain max-w-[10rem] max-h-[12rem]"
+              className="rounded-xl object-contain max-w-[10rem] h-[12rem] bg-black"
             />
             <div className="px-1">
               <p className="text-sm">{r.name}</p>

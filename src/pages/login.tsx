@@ -29,7 +29,7 @@ export default function LoginPage() {
   const handleClick = useCallback(() => {
     login({
       userId: username,
-      password,
+      userPw: password,
     })
       .then((res) => {
         Cookies.set('jwt', res.data)
