@@ -3,10 +3,9 @@ import { CompatClient, Stomp } from '@stomp/stompjs'
 import React, { useRef } from 'react'
 import { HTTP_API_SERVER } from '../configs/appConfig'
 import { ChatView } from '../components/ChatView'
-import Link from 'next/link'
 import useRoomId from '../hooks/useRoomId'
-import Button from '../components/common/Button'
 import MainLayout from '../components/layout/MainLayout'
+import { Button } from 'react-bootstrap'
 
 export default function Viewer() {
   const [roomId] = useRoomId()
@@ -110,9 +109,9 @@ export default function Viewer() {
         <div>
           <video ref={remoteVideoRef} autoPlay={true}></video>
           <div className="flex space-x-1">
-            <Button onClick={() => viewerStart()}>Viewer Start</Button>
-            <Button primary={false} onClick={() => viewerStop()}>
-              Stop
+            <Button onClick={() => viewerStart()}>방송 시청</Button>
+            <Button variant="danger" onClick={() => viewerStop()}>
+              시청 종료
             </Button>
           </div>
         </div>

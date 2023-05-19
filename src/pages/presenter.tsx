@@ -3,10 +3,9 @@ import { CompatClient, Stomp } from '@stomp/stompjs'
 import React, { useRef } from 'react'
 import { HTTP_API_SERVER } from '../configs/appConfig'
 import { ChatView } from '../components/ChatView'
-import Link from 'next/link'
 import useRoomId from '../hooks/useRoomId'
-import Button from '../components/common/Button'
 import MainLayout from '../components/layout/MainLayout'
+import { Button } from 'react-bootstrap'
 
 export default function Presenter() {
   const [roomId] = useRoomId()
@@ -116,9 +115,9 @@ export default function Presenter() {
         <div>
           <video ref={localVideoRef} autoPlay={true}></video>
           <div className="flex space-x-1">
-            <Button onClick={() => presenterStart()}>Presenter Start</Button>
-            <Button primary={false} onClick={() => presenterStop()}>
-              Stop
+            <Button onClick={() => presenterStart()}>방송 시작</Button>
+            <Button variant="danger" onClick={() => presenterStop()}>
+              방송 종료
             </Button>
           </div>
         </div>

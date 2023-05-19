@@ -4,7 +4,6 @@ import { getRooms, RoomInfo } from '../models/room'
 import RoomListView from '../components/RoomListView'
 import MainLayout from '../components/layout/MainLayout'
 import { getThumbnailImage } from '../models/thumbnail'
-import { Button } from 'react-bootstrap'
 
 export default function Home() {
   const router = useRouter()
