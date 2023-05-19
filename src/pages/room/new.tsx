@@ -22,7 +22,7 @@ export default function NewRoomPage() {
 
   return (
     <MainLayout>
-      <div className="p-2 mx-auto w-full sm:w-1/2">
+      <div>
         <TitleText text={'방 생성'} />
         <RoomCreateForm onSubmit={onSubmit} />
       </div>

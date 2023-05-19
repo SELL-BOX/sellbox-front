@@ -1,12 +1,10 @@
-import Header from '../components/Header'
 import React, { useCallback, useState } from 'react'
-import TextInput from '../components/common/TextInput'
-import Button from '../components/common/Button'
 import { signup } from '../models/user'
 import { useRouter } from 'next/router'
 import TitleText from '../components/common/TitleText'
 import CenterLayout from '../components/layout/CenterLayout'
 import MainLayout from '../components/layout/MainLayout'
+import { Button, Form } from 'react-bootstrap'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -29,28 +27,34 @@ export default function LoginPage() {
   return (
     <MainLayout>
       <CenterLayout>
-        <div className="flex flex-col space-y-2 mb-3">
+        <Form>
           <TitleText text={'회원가입'} />
-          <label>이메일</label>
-          <TextInput
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label>아이디</label>
-          <TextInput
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label>패스워드</label>
-          <TextInput
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Label htmlFor="formEmail">이메일</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formId">
+            <Form.Label htmlFor="formId">아이디</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label htmlFor="formPassword">패스워드</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
           <Button onClick={handleClick}>회원가입</Button>
-        </div>
+        </Form>
       </CenterLayout>
     </MainLayout>
   )

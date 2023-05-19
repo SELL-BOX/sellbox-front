@@ -1,13 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
-import TextInput from '../components/common/TextInput'
-import Button from '../components/common/Button'
 import { login } from '../models/user'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import TitleText from '../components/common/TitleText'
 import CenterLayout from '../components/layout/CenterLayout'
 import MainLayout from '../components/layout/MainLayout'
+import { Button, Form } from 'react-bootstrap'
 
 function GoogleLoginButton() {
   return (
@@ -40,22 +39,26 @@ export default function LoginPage() {
   return (
     <MainLayout>
       <CenterLayout>
-        <div className="flex flex-col space-y-2 mb-3">
+        <Form>
           <TitleText text={'로그인'} />
-          <label>아이디</label>
-          <TextInput
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label>패스워드</label>
-          <TextInput
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Form.Group className="mb-3" controlId="formId">
+            <Form.Label htmlFor="formId">아이디</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label htmlFor="formPassword">패스워드</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
           <Button onClick={handleClick}>로그인</Button>
-        </div>
+        </Form>
         <GoogleOAuthProvider clientId={'GOOGLE_OAUTH_CLIENT_ID'}>
           <GoogleLoginButton />
         </GoogleOAuthProvider>

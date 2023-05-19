@@ -1,6 +1,5 @@
-import TextInput from '../common/TextInput'
-import Button from '../common/Button'
-import React, { useCallback, useState } from 'react'
+import React, {useCallback, useState} from 'react'
+import {Button, Form} from "react-bootstrap";
 
 type RoomCreateFormProps = {
   initialRoomName?: string
@@ -14,10 +13,10 @@ export type RoomCreateFormData = {
 }
 
 export default function RoomCreateForm({
-  initialRoomName,
-  onSubmit,
-  isEdit,
-}: RoomCreateFormProps) {
+                                         initialRoomName,
+                                         onSubmit,
+                                         isEdit,
+                                       }: RoomCreateFormProps) {
   const [roomName, setRoomName] = useState(initialRoomName ?? '')
   const [file, setFile] = useState<File | null>(null)
   const [imageSrc, setImageSrc] = useState('')
@@ -55,48 +54,47 @@ export default function RoomCreateForm({
     [setFile, encodeFileToBase64],
   )
   return (
-    <div className="flex flex-col space-y-2">
-      <label>방 이름</label>
-      <TextInput type="text" value={roomName} onChange={onChangeRoomName} />
-      <label htmlFor="thumbnail">
-        <div className="mb-2">썸네일</div>
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt="썸네일 이미지"
-            className="rounded-xl object-contain w-[10rem] h-[12rem]"
-          />
-        ) : (
-          <div className="rounded-xl object-contain w-[10rem] h-[12rem] bg-stone-100 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-          </div>
-        )}
-      </label>
-      <input
-        id="thumbnail"
-        type="file"
-        className="hidden"
-        accept="image/png, image/jpeg"
-        onChange={onChangeFileInput}
-      />
-      <div>
-        <Button onClick={onClickHandle}>
-          {isEdit === true ? '수정' : '확인'}
-        </Button>
-      </div>
-    </div>
+    <Form>
+
+      <Form.Group className="mb-3" controlId="formId">
+        <Form.Label htmlFor="formId">방 이름</Form.Label>
+        <Form.Control type="text" value={roomName} onChange={onChangeRoomName}/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formThumbnail">
+        <Form.Label htmlFor="formThumbnail">
+          <div className="mb-2">썸네일</div>
+          {imageSrc ? (
+            <img
+              src={imageSrc}
+              alt="썸네일 이미지"
+              className="rounded-xl object-contain w-[10rem] h-[12rem]"
+            />
+          ) : (
+            <div
+              className="rounded-xl object-contain w-[10rem] h-[12rem] bg-stone-100 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                />
+              </svg>
+            </div>
+          )}</Form.Label>
+        <Form.Control type="file" accept="image/png, image/jpeg" onChange={onChangeFileInput} hidden={true}/>
+      </Form.Group>
+
+      <Button onClick={onClickHandle}>
+        {isEdit ? '수정' : '확인'}
+      </Button>
+    </Form>
   )
 }

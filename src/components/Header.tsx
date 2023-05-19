@@ -1,7 +1,6 @@
-import Link from 'next/link'
 import React from 'react'
-import Button from './common/Button'
 import Cookies from 'js-cookie'
+import {Container, Nav, Navbar} from "react-bootstrap";
 
 export default function Header() {
   function handleClick() {
@@ -9,21 +8,21 @@ export default function Header() {
   }
 
   return (
-    <div className="flex space-x-1 mb-2 justify-between items-center p-2 h-13">
-      <Link href="/" className="font-bold text-xl">
-        SellBox
-      </Link>
-      <div className="flex space-x-2 items-center">
-        <div>
-          <Link href={'/signup'}>회원가입</Link>
-        </div>
-        <div>
-          <Link href={'/login'}>로그인</Link>
-        </div>
-        <div>
-          <Button onClick={handleClick}>로그아웃</Button>
-        </div>
-      </div>
-    </div>
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand href="#">SellBox</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="/room/new">방 추가</Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/signup">회원가입</Nav.Link>
+            <Nav.Link href="/login">로그인</Nav.Link>
+            <Nav.Link onClick={handleClick}>로그아웃</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
